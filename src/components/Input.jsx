@@ -2,17 +2,17 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 
 import ArrowGrow from "../img/Symbols/Sprites/ArrowUpDown.svg";
 
-import { TexturePorpertyContext } from "../context/texturePropertyContext";
+import { TexturePropertyContext } from "../context/texturePropertyContext";
 
 import { v4 as uuidv4 } from "uuid";
-import {  addSelfDestructingEventListener,  pauseEvent } from "../TestData/functions";
+import { addSelfDestructingEventListener, pauseEvent } from "../TestData/functions";
 
 function Input(props) {
-    //Basic input properties
+  //Basic input properties
   const { iterable, unit, color, value } = props;
 
-    //There is only one range slider Cursor in the app, and the globalstate has a reference to it
-  const { globalState, dispatch } = useContext(TexturePorpertyContext);
+  //There is only one range slider Cursor in the app, and the globalstate has a reference to it
+  const { globalState, dispatch } = useContext(TexturePropertyContext);
 
   //The value displayed in the input field
   const [dynamicValue, setDynamicValue] = useState(false);
@@ -29,7 +29,7 @@ function Input(props) {
   //Hover is triggered based on parent. Can be repleaced with CSS
   const [hover, setHover] = useState(false);
 
-  //Delays the execution of Dragging by registrationTimer<variable>, is set in executeSliderChange 
+  //Delays the execution of Dragging by registrationTimer<variable>, is set in executeSliderChange
   const [update, setUpdate] = useState(false);
 
   //saved if shift iis held down. used for multi key hotkey e.g. shift + arrowLeft
@@ -57,7 +57,7 @@ function Input(props) {
   //Update value if dragging is on
   useEffect(() => {
     if (update) {
-        //set value - parsed to remove unit, than added the change ~ <-3, 3>, inverted and unit added to the end
+      //set value - parsed to remove unit, than added the change ~ <-3, 3>, inverted and unit added to the end
       setDynamicValue((parseInt(dynamicValue) + multiplyer.y * -1) + unit);
       //setting range cursor position, with additional catches e.g. if it is on the top of the screen
       //move it to the bottom, and do not allow it to exit the screen horizontally
@@ -66,14 +66,14 @@ function Input(props) {
           cursorPos.x + multiplyer.x > window.innerWidth - 25
             ? window.innerWidth - 25
             : cursorPos.x + multiplyer.x < 0
-            ? 0
-            : cursorPos.x + multiplyer.x,
+              ? 0
+              : cursorPos.x + multiplyer.x,
         y:
           cursorPos.y + multiplyer.y > window.innerHeight
             ? 0
             : cursorPos.y + multiplyer.y > 0
-            ? cursorPos.y + multiplyer.y
-            : window.innerHeight,
+              ? cursorPos.y + multiplyer.y
+              : window.innerHeight,
       };
 
       setCursorPos(newPos);
@@ -88,7 +88,7 @@ function Input(props) {
   }, [multiplyer, update]);
 
 
-//saves the rate of movement to multiplyer
+  //saves the rate of movement to multiplyer
   function moveCallback(e) {
     var movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0,
       movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
@@ -100,10 +100,10 @@ function Input(props) {
     }
   }
 
-//sets the initial value for the cursor
+  //sets the initial value for the cursor
   useEffect(() => {
     if (inputRef !== null) {
-     
+
       setCursorPos({
         x: inputRef.current.getBoundingClientRect().x + 35,
         y: inputRef.current.getBoundingClientRect().top,
@@ -112,7 +112,7 @@ function Input(props) {
     }
   }, [globalState.MetaData]);
 
-  
+
   //adds an Event listener if dragging happens, and removes it if it is stopped
   //connected to the PointerLock which is set below
   function changeCallback(e) {
@@ -147,16 +147,16 @@ function Input(props) {
     setDynamicValue(0 + unit);
   }, []);
 
- 
-  
+
+
   const handleSelect = (e) => {
-    if(selection === undefined){
+    if (selection === undefined) {
       e.target.select()
     }
   };
 
 
-  //executes when the mouse is released 
+  //executes when the mouse is released
   function onSliderChangeEnd() {
 
     //initialize exitPointerLock
@@ -165,7 +165,7 @@ function Input(props) {
       document.mozExitPointerLock ||
       document.webkitExitPointerLock;
 
-      //removes the event listener which is responsible for changing the value while dragging
+    //removes the event listener which is responsible for changing the value while dragging
     document.removeEventListener("mousemove", moveCallback, true);
 
     document.exitPointerLock();
@@ -191,8 +191,8 @@ function Input(props) {
     }
   }
 
- 
-//The start of the dragging event
+
+  //The start of the dragging event
   function executeSliderChange(e) {
     const element = inputRef.current;
 
@@ -201,7 +201,7 @@ function Input(props) {
       y: inputRef.current.getBoundingClientRect().top,
     });
 
-    
+
     element.requestPointerLock =
       element.requestPointerLock ||
       element.mozRequestPointerLock ||
@@ -215,7 +215,7 @@ function Input(props) {
       setUpdate(true);
       setHover(false)
       element.focus()
-      
+
     }, registrationTimer);
 
     //this event listener only runs once, and then destoryed
@@ -231,27 +231,27 @@ function Input(props) {
 
     operatorKeycodes.map((keycode) => {
       if (e.target.value.includes(keycode)) {
-          if(unit !== undefined){
-              const stringifiedValue = `${e.target.value}`
-            const processedValue = stringifiedValue.replace(unit, "")
-            try{
-                setDynamicValue(eval(processedValue) + unit);
-            } catch {
-                if(e instanceof SyntaxError ){
-                    console.log("syntax error")
-                    setDynamicValue(parseInt(dynamicValue) + unit);
-                }else {
-                    console.log("error")
-                    setDynamicValue(parseInt(dynamicValue) + unit);
-                    
-                }
-            }
-           
+        if (unit !== undefined) {
+          const stringifiedValue = `${e.target.value}`
+          const processedValue = stringifiedValue.replace(unit, "")
+          try {
+            setDynamicValue(eval(processedValue) + unit);
+          } catch {
+            if (e instanceof SyntaxError) {
+              console.log("syntax error")
+              setDynamicValue(parseInt(dynamicValue) + unit);
+            } else {
+              console.log("error")
+              setDynamicValue(parseInt(dynamicValue) + unit);
 
-          }else{
-            setDynamicValue(eval(e.target.value) + unit);
+            }
           }
-        
+
+
+        } else {
+          setDynamicValue(eval(e.target.value) + unit);
+        }
+
         hasOperation = true;
       }
     });
@@ -296,7 +296,7 @@ function Input(props) {
     } else if (/\d/.test(e.code)) {
       console.log("Number");
       const splitValue = `${dynamicValue}`.split("");
-     
+
 
       if (splitValue.length === 1 && splitValue[0] == 0) {
         splitValue.pop();
@@ -324,29 +324,29 @@ function Input(props) {
       e.code === "Delete" ||
       e.code === "Space"
     ) {
-        const splitValue = `${dynamicValue}`.split("");
-        console.log(selection);
-        if (selection !== undefined) {
-          console.log(splitValue, selection.selectionStart)
+      const splitValue = `${dynamicValue}`.split("");
+      console.log(selection);
+      if (selection !== undefined) {
+        console.log(splitValue, selection.selectionStart)
         splitValue.splice(selection.selectionStart, selection.selectionLength);
-      
+
         if (splitValue.length !== 0) {
           setDynamicValue(splitValue.join(""));
         } else {
           setDynamicValue(0);
         }
 
-      }else {
+      } else {
         console.log("splitValue");
-          if(e.code === "Backspace"){
-              splitValue.splice(e.target.value.length - 1, 1)
-              
-              if(splitValue.length > 0) {
-                setDynamicValue(splitValue.join(""))
-              }else {
-                  setDynamicValue(0)
-              }
+        if (e.code === "Backspace") {
+          splitValue.splice(e.target.value.length - 1, 1)
+
+          if (splitValue.length > 0) {
+            setDynamicValue(splitValue.join(""))
+          } else {
+            setDynamicValue(0)
           }
+        }
       }
     } else if (operatorKeycodes.includes(e.key)) {
       console.log("operator");
@@ -372,14 +372,14 @@ function Input(props) {
   function handleSelection(e) {
     const start = inputRef.current.selectionStart;
     const end = inputRef.current.selectionEnd;
-   
 
-    
+
+
     if (start === end) {
       setSelection(undefined);
       //inputRef.current.select()
     } else {
-      console.log(start, end )
+      console.log(start, end)
       setSelection({
         selectionStart: start,
         selectionLength: end - start,
@@ -402,23 +402,22 @@ function Input(props) {
     <div
       onMouseOver={() => {
         setHover(true);
-       
-        
+
+
       }}
       onMouseLeave={() => {
         setHover(false);
         sliderCursor.classList.add("hidden");
 
       }}
-      className={`${
-        color ? "w_32 ml-1" : "w_56 ml-1"
-      } h_24 relative flex items-center `}
+      className={`${color ? "w_32 ml-1" : "w_56 ml-1"
+        } h_24 relative flex items-center `}
     >
       <input
         id={uuidv4()}
         onClick={handleSelect}
         onDrag={pauseEvent}
-        onMouseLeave={() => {setHover(false)}}
+        onMouseLeave={() => { setHover(false) }}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onDrop={pauseEvent}
@@ -426,17 +425,16 @@ function Input(props) {
         onSelect={handleSelection}
         ref={inputRef}
         value={dynamicValue}
-        
+
         defaultValue={`${color ? value : `0${unit}`}`}
-        className={`bg-lightGrey w-full h-full focus:outline-none  focus:ring-1 focus:ring-primary  rounded ${
-          iterable ? "pl-4" : "pl-1"
-        } normal-font defaultCursor`}
+        className={`bg-lightGrey w-full h-full focus:outline-none  focus:ring-1 focus:ring-primary  rounded ${iterable ? "pl-4" : "pl-1"
+          } normal-font defaultCursor`}
       />{" "}
-      
-        <div  onDrag={pauseEvent} onMouseDown={executeSliderChange} className={`${hover ? "flex" : "hidden"} absolute right-0 h_24  items-center z-50 bg-lightGrey rounded RangeSlider`}>
-          <img onDrag={pauseEvent} className="" src={ArrowGrow} />
-        </div>
-      
+
+      <div onDrag={pauseEvent} onMouseDown={executeSliderChange} className={`${hover ? "flex" : "hidden"} absolute right-0 h_24  items-center z-50 bg-lightGrey rounded RangeSlider`}>
+        <img onDrag={pauseEvent} className="" src={ArrowGrow} />
+      </div>
+
       {iterable && (
         <p className="normal-font absolute pl-1 text-midGrey">{iterable}</p>
       )}
