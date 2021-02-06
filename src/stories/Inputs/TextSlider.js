@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { Button } from '../Button';
+import {backgroundThemes} from "../Themes"
 import TextSlider from "../../containers/TextSlider"
 import {TexturePropertyProvider} from "../../context/texturePropertyContext"
 import "../../styles/index.css"
 
-export default {
-  title: 'UI Elements/Right Panel/Text Slider',
+export const TextSliderArgs = {
+  title: 'Components/Inputs/Text Slider',
   component: TextSlider,
+  parameters: {
+    componentSubtitle: 'Displays an image that represents a user or organization',
+  },
+  
 argTypes: {
     labelType: { 
         description: "This decides the styling of the label. Has preset parameters",
@@ -100,6 +104,7 @@ const Template = (args) => <TexturePropertyProvider >
   
 export const active = Template.bind({});
 active.args = {
+
     unit: "%",
     decimal: false,
     minimum: 0,
@@ -110,7 +115,6 @@ active.args = {
     active: true,
     labelType: "normal",
 
-  
 };
 
 
@@ -164,35 +168,17 @@ digits.args = {
   
 };
 
-active.parameters = {
-    backgrounds: {
-      themes
-    }
-  }
+export const buttonless = Template.bind({});
+buttonless.args = {
 
-inactive.parameters = {
-    backgrounds: {
-      themes
-    }
-  }
-
-degrees.parameters = {
-    backgrounds: {
-      themes
-    }
-  }
-
-digits.parameters = {
-  backgrounds: {
-    themes
-  }
-}
-
-
-const themes = {
-  default: "Almost White",
-    values: [
-      { name: 'Almost White', value: '#F7F7F7' },
-      { name: 'Almost Black', value: '#252525' },
-    ],
-}
+    unit: " ",
+    decimal: true,
+    minimum: 0,
+    maximum: 1,
+    hasButton: false,
+    emptyButtonSpace: true,
+    propName: "Parameter",
+    active: true,
+    labelType: "normal",
+  
+};

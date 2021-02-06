@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 
 import ArrowGrow from "../img/Symbols/Sprites/ArrowUpDown.svg";
 
+import ValueDragCursor from "../img/Symbols/cursors/cursor-valueDrag-vertical.svg"
+
 import { TexturePropertyContext } from "../context/texturePropertyContext";
 
 import { v4 as uuidv4 } from "uuid";
@@ -44,8 +46,13 @@ function Input(props) {
   //the input element reference
   const inputRef = useRef(null);
 
+  const growthPlacehoder = document.createElement("div")
+
+
+
+
   //Reference to the range cursor which is saved to the global state in Context
-  const sliderCursor = globalState.MetaData.grwothRef.current;
+  const sliderCursor = globalState.MetaData.grwothRef === undefined ?  growthPlacehoder : globalState.MetaData.grwothRef.current  ;
 
   //list of supported operators
   const operatorKeycodes = ["+", "-", "*", "/"];
@@ -108,7 +115,7 @@ function Input(props) {
         x: inputRef.current.getBoundingClientRect().x + 35,
         y: inputRef.current.getBoundingClientRect().top,
       });
-      console.log(globalState.MetaData.offsetY);
+      //console.log(globalState.MetaData.offsetY);
     }
   }, [globalState.MetaData]);
 
@@ -143,6 +150,10 @@ function Input(props) {
     document.addEventListener("mozpointerlockchange", changeCallback, false);
     document.addEventListener("webkitpointerlockchange", changeCallback, false);
 
+    growthPlacehoder.src = ValueDragCursor
+    growthPlacehoder.classList.add("absolute")
+    growthPlacehoder.classList.add("z-50")
+    growthPlacehoder.classList.add("hidden")
     // Hook mouse move events
     setDynamicValue(0 + unit);
   }, []);

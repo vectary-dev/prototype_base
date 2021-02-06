@@ -31,6 +31,8 @@ function TextSlider(props) {
 
     } = props
 
+    
+
     const propName = props.propName || "Parameter"
     const colorSlider = props.colorSlider || false
 
@@ -130,8 +132,8 @@ function TextSlider(props) {
     }, [progress, max])
 
     return (
-        <div ref={sliderRef} className={`${hasButton === true ? " h_32 my-2 px-2" : "h_24 my-4 "} text-almostBlack `}>
-            <div className={`w-full h-full  flex  justify-between `}>
+        <div ref={sliderRef} className={`${hasButton === true ? " h_32 my-2 " : "h_24 my-4 "} px-2 text-almostBlack `}>
+            <div className={`${emptyButtonSpace ? "w_184 mr-8" : "w-full"} h-full  flex  justify-between `}>
 
                 <div className={`${hasButton != false ? "w_184" : "w-full"} ${emptyButtonSpace && "pr-4"}`}>
 
@@ -184,5 +186,7 @@ function TextSlider(props) {
         </div>
     )
 }
+
+
 
 export default TextSlider

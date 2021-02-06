@@ -48,7 +48,6 @@ function TexturePopup(props) {
     const [activeTab, setActiveTab] = useState(0) //The index of the active submenu currently open (e.g. Adjust / Transform)
     const [activeType, setActiveType] = useState(0) //
 
-
     const [properties, setProperties] = useState([])
 
     useOutsideAlerter(popUpWindow, dispatch, globalState)

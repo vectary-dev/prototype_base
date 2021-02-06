@@ -6,7 +6,7 @@ import Switch from "../components/Switch"
 
 function LabeledSwitch(props){
     const {
-        label,
+        label = "Switch",
         labelType,
         padding,
         handleChange,

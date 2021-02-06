@@ -4,7 +4,7 @@ import {TexturePropertyProvider} from "../../context/texturePropertyContext"
 import "../../styles/index.css"
 
 export default {
-  title: 'UI Elements/Texture Popup/Text Slider',
+  title: 'Components/Texture Popup/Text Slider',
   component: TextSlider,
   argTypes: {
     labelType: { 
@@ -175,33 +175,40 @@ digits.args = {
 
 active.parameters = {
     backgrounds: {
-      themes
+        default: "Almost White",
+        values: [
+          { name: 'Almost White', value: '#F7F7F7' },
+          { name: 'Almost Black', value: '#252525' },
+        ],
     }
   }
 
 inactive.parameters = {
     backgrounds: {
-      themes
+        default: "Almost White",
+        values: [
+          { name: 'Almost White', value: '#F7F7F7' },
+          { name: 'Almost Black', value: '#252525' },
+        ],
     }
   }
 
 degrees.parameters = {
     backgrounds: {
-      themes
+        default: "Almost White",
+    values: [
+      { name: 'Almost White', value: '#F7F7F7' },
+      { name: 'Almost Black', value: '#252525' },
+    ],
     }
   }
 
 digits.parameters = {
   backgrounds: {
-    themes
-  }
-}
-
-
-const themes = {
-  default: "Almost White",
+    default: "Almost White",
     values: [
       { name: 'Almost White', value: '#F7F7F7' },
       { name: 'Almost Black', value: '#252525' },
     ],
+  }
 }

@@ -149,7 +149,7 @@ export const generateInputs = (inputs, type = null) => {
                 inputArray.push(<Switch key={newId} id={newId} axis={newiterable} unit={newUnit} />);
                 break;
             case "colorPicker":
-                console.log("COLORPICKER");
+                inputArray.push(<Input key={newId} unit={newUnit}  color={true}/>);
                 break;
             case "rangeInput":
                 inputArray.push(<RangeInput key={newId} iterable={newiterable} unit={newUnit} />);

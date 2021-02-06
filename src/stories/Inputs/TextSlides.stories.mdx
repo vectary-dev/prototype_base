@@ -1,0 +1,448 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../Themes"
+import TextSlider from "../../containers/TextSlider"
+import {TexturePropertyProvider} from "../../context/texturePropertyContext"
+import "../../styles/index.css"
+
+import {TextSliderArgs} from "./TextSlider.js"
+
+
+<Meta title="Components/Inputs/Slider" component={TextSlider} 
+/>
+
+# Sliders
+
+## These sliders include a label of property, alongside with a changable parameter
+###
+### Base Features
+- The value of the slider changes if you drag the knot
+- The knot readjusts if the value has been changed manually
+- Texture button opens a popup if clicked, that is filled with the data of the "Parameter". e.g. Metalness's button loads the corresponding data to the popup
+
+###
+###
+<Preview >
+    <Story name="standard" >
+        <TexturePropertyProvider >
+            <div className="w_prop h-full items-center flex flex-col overflow-y-scroll overflow-x-hidden hideScrollBar select-none dark:bg-almostBlack">
+                <TextSlider
+                    unit= {"%"}
+                    decimal= {false}
+                    minimum= {0}
+                    maximum= {100}
+                    hasButton= {true}
+                    emptyButtonSpace= {false}
+                    propName= {"Standard Slider"}
+                    active= {true}
+                    labelType= {"normal"}
+                />
+            </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+
+## Panel Variants
+
+#### These are the variants that can be applied to the Panel section of the Engine.
+
+###
+###
+
+<Story name="PanelVariants" > 
+   
+        <TexturePropertyProvider >
+        
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Inactive"}
+            active= {false}
+            labelType= {"normal"}
+        />
+         </div>
+        
+        
+        <div className="w_props-row flex flex-col ">
+         <TextSlider
+            unit= {"°"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {360}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Degrees"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+        
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {true}
+            minimum= {0}
+            maximum= {1}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Digits"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+        
+        
+        <div className="w_props-row flex flex-col ">
+         <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {false}
+            emptyButtonSpace= {true}
+            propName= {"Buttonless"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+        
+  </TexturePropertyProvider >
+   
+</Story>
+
+### Inactive
+#### In inactive state the knot is not movable, and the value is not adjustable. But the button still can be clicked. if a texture has been assigned to the Parameter, the slider chenges it's state to "active=true"
+<Preview >
+    <Story name="Inactive" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Inactive"}
+            active= {false}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+### Degrees
+#### The component appends any string passed trough the "unit" prop as a suffix to the "progress value". Also the minumum and maximum can be adjusted trough these props.
+<Preview >
+    <Story name="degrees" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"°"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {360}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Degrees"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+### Digits
+#### If "decimal" is set to `true` the slider will calculate floating point numbers, it is trimmed to 3 decimals
+<Preview >
+    <Story name="digits" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {true}
+            minimum= {0}
+            maximum= {1}
+            hasButton= {true}
+            emptyButtonSpace= {false}
+            propName= {"Digits"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+
+### Digits
+#### By setting "hasButton" to `false` and "emptyButtonSpace" to `true` we can remove the button after the end of the slider, while still letting it adjust to the column in the same way as the ones with a button.
+<Preview >
+    <Story name="buttonless" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {false}
+            emptyButtonSpace= {true}
+            propName= {"Buttonless"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+
+
+
+
+## Popup Variants
+
+#### These are the variants that can be applied to the Texture Popup section. These are the same components as the ones in the Panel seciton, but these are configured to occupying less space
+
+###
+###
+
+<Story name="PopupVariants" > 
+   
+        <TexturePropertyProvider >
+         <div className="w_props-row p-4 ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Inactive"}
+            active= {false}
+            labelType= {"normal"}
+        />
+         </div>
+        
+        <div className="w_props-row p-4 ">
+         <TextSlider
+            unit= {"°"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {360}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Degrees"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+        
+         <div className="w_props-row p-4 ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {true}
+            minimum= {0}
+            maximum= {1}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Digits"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+        
+        
+        
+        
+  </TexturePropertyProvider >
+   
+</Story>
+
+
+### Popup - Inactive
+#### In inactive state the knot is not movable, and the value is not adjustable. But the button still can be clicked. if a texture has been assigned to the Parameter, the slider chenges it's state to "active=true"
+<Preview >
+    <Story name="_inactive-popup" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {100}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Inactive"}
+            active= {false}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+### Popup - Degrees
+#### The component appends any string passed trough the "unit" prop as a suffix to the "progress value". Also the minumum and maximum can be adjusted trough these props.
+
+<Preview >
+    <Story name="_degrees-popup" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"°"}
+            decimal= {false}
+            minimum= {0}
+            maximum= {360}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Degrees"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+
+### Popup - Digits
+#### If "decimal" is set to `true` the slider will calculate floating point numbers, it is trimmed to 3 decimals
+<Preview >
+    <Story name="_digits-popup" >
+        <TexturePropertyProvider >
+      
+         <div className="w_props-row flex flex-col ">
+        <TextSlider
+            unit= {"%"}
+            decimal= {true}
+            minimum= {0}
+            maximum= {1}
+            hasButton= {false}
+            emptyButtonSpace= {false}
+            propName= {"Digits"}
+            active= {true}
+            labelType= {"normal"}
+        />
+         </div>
+    </TexturePropertyProvider >
+    </Story>
+</Preview>
+
+
+
+
+# Slider With Controls
+
+## Here you can adjust the properties of the sliders and see it change in real time
+
+export const Template = (args) =>  <TexturePropertyProvider >
+            <div className="w_prop h-full items-center flex flex-col overflow-y-scroll overflow-x-hidden hideScrollBar select-none dark:bg-almostBlack">
+                <TextSlider
+                   {...args}
+                />
+            </div>
+    </TexturePropertyProvider >
+
+
+<Canvas>
+  <Story name="controls" 
+  argTypes={{
+    labelType: { 
+        description: "This decides the styling of the label. Has preset parameters",
+        table: {
+            defaultValue: {
+                summary: "true"
+            }
+        },
+        control: { type: "select", options: ["title", "normal"] }
+    },
+     unit: {
+        description: "The unit after the value of the progress value",
+        table: {
+            defaultValue: {
+                summary: "%"
+            }
+        },
+        control: {type: "text" }},
+         propName: {
+        description: "The name of the property",
+        table: {
+            defaultValue: {
+                summary: "Parameter"
+            }
+        },
+        control: {type: "text"}},
+        active: {
+        description: "Determines if the slider is in an active state or not",
+        table: {
+            defaultValue: {
+                summary: "true"
+            }
+        },
+        control: {type: "boolean"}}, 
+        minimum: {
+        description: "The Minimum value of the slider",
+        table: {
+            defaultValue: {
+                summary: "0"
+            }
+        },
+        control: {type: "number"}},
+        maximum: {
+        description: "The Maximum value of the slider",
+        table: {
+            defaultValue: {
+                summary: "100"
+            }
+        },
+        control: {type: "number"}},
+        hasButton: {
+        description: "Determines if the slider displays a button or not",
+        table: {
+            defaultValue: {
+                summary: "true"
+            }
+        },
+        control: {type: "boolean"}},
+         emptyButtonSpace: {
+        description: "Fills the space of the button with margin -- used for props that are in the Panel but have no button",
+        table: {
+            defaultValue: {
+                summary: "false"
+            }
+        },
+        control: {type: "boolean"}}
+}}
+args={{    unit: "%",
+    decimal: false,
+    minimum: 0,
+    maximum: 100,
+    hasButton: true,
+    emptyButtonSpace: false,
+    propName: "Parameter",
+    active: true,
+    labelType: "normal",
+}}
+>
+   {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story={"controls"} />

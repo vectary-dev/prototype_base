@@ -4,7 +4,7 @@ import { TexturePropertyContext } from "../context/texturePropertyContext"
 
 import DownArrow from "../img/Symbols/Sprites/ArrowDown.svg"
 
-import { generateInputs, payloadGenerator } from "../TestData/generators"
+import { defaultInputs, generateInputs, payloadGenerator } from "../TestData/generators"
 
 import colorPicker from "../img/Symbols/Sprites/PipetteColor.svg"
 
@@ -27,15 +27,13 @@ import Dropdown from "../components/dropdown"
 function LabeledInput(props) {
     const {
         id,
-        label,
+        label = "Input",
         labelType,
-        input,
+        input = defaultInputs.single("%"),
         type,
         icon,
         path,
-        plus,
-        hasButton,
-        buttonClick
+        hasButton
     } = props
     const mainProperty = props.mainProperty !== undefined ? props.mainProperty : true
     const [inputs, setInputs] = useState([])
@@ -71,7 +69,7 @@ function LabeledInput(props) {
             case "link":
                 setButtonIcon(Link)
                 break;
-            case "empty":
+            case "plus":
                 setButtonIcon(Plus)
                 break;
             default:
@@ -88,6 +86,7 @@ function LabeledInput(props) {
         })
 
         setInputs(generateInputs(input, type || null))
+        console.log(input)
     }, [])
 
     useEffect(() => {
@@ -147,20 +146,31 @@ function LabeledInput(props) {
                     :
                     <div
                         onClick={() => { setToggleDropdown(!toggleDorpdown) }}
-                        className={` bg-lightGrey h-full w_48 flex justify-center items-center normal-font`}>
-                        {localLabel}
-                        <img className="" src={DownArrow} />
+                        className={`  h-full  flex justify-center items-center normal-font`}>
+                        <div className="flex bg-lightGrey  h-full items-center px-1 rounded">
+                            {localLabel}
+                            <img className="" src={DownArrow} />
+                        </div>
                         <Dropdown
                             setToggleDropdown={setToggleDropdown}
                             list={reducedValue}
                             defaultState={true}
                             style={{
                                 width: "48px",
-                                marginLeft: "0px",
+                                marginLeft: "-117px",
                                 marginTop: "16px"
                             }}
-                            className={`absolute z-10 w-28 bg-almostBlack text-almostWhite ${!toggleDorpdown && "hidden"}`} />
+                            className={`absolute z-10 w-28  bg-almostBlack text-almostWhite ${!toggleDorpdown && "hidden"}`} />
+
+                            <div className="flex m-1">
+
+                            {inputs  && inputs.map((inp) => {
+                                return inp
+                            })}
+
+                            </div>
                     </div>
+                    
 
                 }
 
@@ -168,7 +178,7 @@ function LabeledInput(props) {
                 <div className={`flex ${type === "buttonless" && "pr-8"}`}>
                     <div className="flex">
 
-                        {inputs && inputs.map((inp) => {
+                        {(inputs && type !== "colorPicker") && inputs.map((inp) => {
                             return inp
                         })}
 
