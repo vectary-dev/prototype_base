@@ -1,11 +1,14 @@
 import React, { createContext, useReducer } from "react";
 import combineReducers from 'react-combine-reducers';
 
+import{ValueDragCursor} from "../img/Symbols/cursors/cursor-valueDrag-vertical.svg"
+
 import { MaterialPropertyReducer } from "../reducers/MaterialPropertyReducer";
 import { MetaDataReducer, defaultMetaData } from "../reducers/MetaDataReducer";
 // import { TextureTypes } from "../TestData/DefaultData";
 
 export const TexturePropertyContext = createContext();
+
 
 export const TexturePropertyProvider = (props) => {
     const [globalStateReducer, initialGlobalState] = combineReducers({
@@ -30,7 +33,7 @@ const rawData =
         "current": {}
       },
       "grwothRef": {
-        "current": {}
+        "current": ""
       }
     },
     "MaterialPorperties": [

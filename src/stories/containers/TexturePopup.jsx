@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react"
 import { TexturePropertyContext } from "../../context/texturePropertyContext"
 
 import { generateProperties } from "../../TestData/generators"
+import ValueDragCursor from "../..//img/Symbols/cursors/cursor-valueDrag-vertical.svg";
 
 import Dropdown from "../../components/dropdown"
 import PopUpView from "../../components/popUpView"
@@ -23,6 +24,9 @@ function useOutsideAlerter(ref, dispatch, globalState) {
             }
         }
 
+       
+    
+
         // Bind the event listener
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -42,6 +46,8 @@ function TexturePopup(props) {
     const [open, setOpen] = useState(true)
     const [hover, setHover] = useState(false)
     const popUpWindow = useRef(null)
+    const grwothRef = useRef(null);
+
 
     const [activeProperty, setActiveProperty] = useState(0) // The index of the active property e.g. Metalness
     const [activeTexture, setActiveTexture] = useState(0) //The index of the active TextureType (Solid / Gradient / Image)
@@ -56,6 +62,14 @@ function TexturePopup(props) {
         setActiveTab(0)
         console.log(activeTab, activeTexture, activeProperty, activeType)
     }, [activeTexture])
+    useEffect(() => {
+        dispatch({
+            type: "ADD_WORKSPACE_REF", payload: {
+                ref: "",
+                grwothRef: grwothRef
+            }
+        })
+    }, [grwothRef]);
 
     useEffect(() => {
 
@@ -125,6 +139,8 @@ function TexturePopup(props) {
     return (
         <div className="flex select-none "
         >
+            <img ref={grwothRef} src={ValueDragCursor} className="absolute z-50 hidden" />
+
             {globalState.MaterialPorperties[activeType] ?
                 <div ref={popUpWindow}
                     className={`${open ? "" : "hidden"}

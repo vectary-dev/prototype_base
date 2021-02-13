@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../Themes"
+import Expand from "../../containers/Expand"
+import LabeledInput from "./LabeledInput"
+
+import {TexturePropertyProvider} from "../../context/texturePropertyContext"
+import "../../styles/index.css"
+
+
+<Meta title="Components/Containers/Expand" component={Expand} 
+parameters={{ 
+       backgrounds: {
+    default: "Almost White",
+    values: [
+      { name: 'Almost White', value: '#F7F7F7' },
+      { name: 'Almost Black', value: '#252525' },
+    ],
+},
+ }}
+/>
+
+# Expand Options
+## It hides all it's nested components if turned off
+
+
+<Preview>
+    <Story name="default">
+        <div >
+            <Expand label={"Expand Options"} >
+                <TexturePropertyProvider >
+                              <div className="w_prop h-full items-center flex flex-col  hideScrollBar select-none dark:bg-almostBlack">
+                                 
+                                  <LabeledInput label="Option 01"  labelType="title" hasButton={ true} mainProperty={ true} />
+                                  <LabeledInput label="Option 02"  labelType="title" hasButton={ true} mainProperty={ true} />
+                                  <LabeledInput label="Option 03"  labelType="title" hasButton={ true} mainProperty={ true} />
+                               
+                              </div>
+                            </TexturePropertyProvider>
+            </Expand>
+        </div >
+    </Story>
+</Preview>
+

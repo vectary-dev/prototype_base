@@ -5,8 +5,17 @@ import {TexturePropertyProvider} from "../../context/texturePropertyContext"
 import { defaultInputs } from "../../TestData/generators"
 
 export default {
-    title: 'Components/Inputs/Text Switch',
+    title: 'Components/Containers/Text Switch',
     component: LabeledSwitch,
+    parameters: {
+        backgrounds: {
+            default: "Almost White",
+            values: [
+              { name: 'Almost White', value: '#F7F7F7' },
+              { name: 'Almost Black', value: '#252525' },
+            ],
+        },
+    },
     argTypes: {
         label: { 
             description: "The name of the property",

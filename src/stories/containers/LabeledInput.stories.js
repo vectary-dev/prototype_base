@@ -1,12 +1,12 @@
 import React from "react"
-import LabeledInput from "../../containers/LabeledInput"
+import LabeledInput from "./LabeledInput"
 import {TexturePropertyProvider} from "../../context/texturePropertyContext"
 import { defaultInputs } from "../../TestData/generators";
 
 import "../../styles/index.css"
 
 export default {
-    title: 'Components/Inputs/Labeled Input',
+    title: 'Components/Containers/Labeled Input',
     component: LabeledInput,
 
   argTypes: {

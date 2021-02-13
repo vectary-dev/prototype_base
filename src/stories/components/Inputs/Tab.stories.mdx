@@ -1,0 +1,31 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../../Themes"
+import Tab from "./Tab"
+import {TexturePropertyProvider} from "../../../context/texturePropertyContext"
+import "../../../styles/index.css"
+import {TextureTypes} from "../../../TestData/DefaultData"
+
+
+<Meta title="Components /Inputs/ Tab" component={Tab} 
+parameters={{ 
+       backgrounds: {
+    default: "Almost White",
+    values: [
+      { name: 'Almost White', value: '#F7F7F7' },
+      { name: 'Almost Black', value: '#252525' },
+    ],
+},
+ }}
+/>
+
+#Texture Popup
+<Preview>
+    <Story name="default">
+        <div className="w_prop">
+            <Tab tabOptions={TextureTypes} active={0}/>
+        </div >
+    </Story>
+</Preview>
+

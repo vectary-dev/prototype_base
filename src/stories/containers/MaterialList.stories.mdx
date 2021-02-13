@@ -2,22 +2,22 @@ import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs
 
 
 import {backgroundThemes} from "../Themes"
-import TexturePopup from "./TexturePopup"
+import MaterialList from "../../containers/MaterialList"
 import {TexturePropertyProvider} from "../../context/texturePropertyContext"
 import "../../styles/index.css"
+import AddMaterial from "../../containers/AddMaterial"
 
+<Meta title="Components/Containers/MaterialList" component={MaterialList} />
 
-<Meta title="Components/Containers/TexturePopup" component={TexturePopup} />
-
-# Texture Popup
-
+# Material List
 <Preview>
     <Story name="default">
-        <div style={{height: "500px"}}>
         <TexturePropertyProvider >
-            <TexturePopup />
+            <div className="w_prop bg-almostWhite py-1">
+            <AddMaterial />
+            <MaterialList />
+            </div>
         </TexturePropertyProvider >
-        </div>    
     </Story>
 </Preview>
 

@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../../Themes"
+import Button from "../../../components/Button"
+import {TexturePropertyProvider} from "../../../context/texturePropertyContext"
+import "../../../styles/index.css"
+
+
+<Meta title="Components/Inputs/Button" component={Button} />
+
+#Texture Popup
+<Preview>
+    <Story name="default">
+        <div className="w_prop text-almostWhite" >
+            <Button buttonText={"Button Text"} label={"explainer label below"}  />
+        </div >
+    </Story>
+</Preview>
+

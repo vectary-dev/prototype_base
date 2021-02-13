@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../../Themes"
+import Dropdown from "./dropdown"
+import {TexturePropertyProvider} from "../../../context/texturePropertyContext"
+import "../../../styles/index.css"
+
+import {TextureTypes} from "../../../TestData/DefaultData"
+
+<Meta title="Components/Inputs/Dropdown" component={Dropdown} />
+
+#Texture Popup
+<Preview>
+    <Story name="default">
+        <div className="w_prop h-40 flex items-center">
+            <Dropdown list={TextureTypes} type="solid"  />
+        </div >
+    </Story>
+</Preview>
+
