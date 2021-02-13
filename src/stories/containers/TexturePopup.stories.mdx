@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas,  ArgsTable, Preview  } from '@storybook/addon-docs/blocks';
+
+
+import {backgroundThemes} from "../Themes"
+import TexturePopup from "./TexturePopup"
+import {TexturePropertyProvider} from "../../context/texturePropertyContext"
+import "../../styles/index.css"
+
+
+<Meta title="Components/TexturePopup" component={TexturePopup} />
+
+#Texture Popup
+<Preview>
+    <Story name="default">
+        <TexturePropertyProvider >
+            <TexturePopup />
+        </TexturePropertyProvider >
+    </Story>
+</Preview>
+

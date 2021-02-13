@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
 
-import { TexturePropertyContext } from "../context/texturePropertyContext"
+import { TexturePropertyContext } from "../../context/texturePropertyContext"
 
-import { generateProperties } from "../TestData/generators"
+import { generateProperties } from "../../TestData/generators"
 
-import Dropdown from "../components/dropdown"
-import PopUpView from "../components/popUpView"
-import Tab from "../components/Tab"
+import Dropdown from "../../components/dropdown"
+import PopUpView from "../../components/popUpView"
+import Tab from "../../components/Tab"
 
 function useOutsideAlerter(ref, dispatch, globalState) {
     useEffect(() => {
@@ -49,7 +49,6 @@ function TexturePopup(props) {
     const [activeType, setActiveType] = useState(0) //
 
     const [properties, setProperties] = useState([])
-    console.log(globalState)
 
     useOutsideAlerter(popUpWindow, dispatch, globalState)
 
@@ -124,12 +123,12 @@ function TexturePopup(props) {
 
 
     return (
-        <div className="flex justify-end pt-60 select-none "
+        <div className="flex select-none "
         >
             {globalState.MaterialPorperties[activeType] ?
                 <div ref={popUpWindow}
                     className={`${open ? "" : "hidden"}
-         w_props-row  bg-white absolute rounded-sm  `}
+         w_props-row  bg-almostWhite absolute rounded-sm  `}
                     style={{ minHeight: "350px" }}>
 
                     <PopUpView
