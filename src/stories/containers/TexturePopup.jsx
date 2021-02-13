@@ -128,7 +128,7 @@ function TexturePopup(props) {
             {globalState.MaterialPorperties[activeType] ?
                 <div ref={popUpWindow}
                     className={`${open ? "" : "hidden"}
-         w_props-row  bg-almostWhite absolute rounded-sm  `}
+         w_props-row  bg-white absolute rounded-sm  `}
                     style={{ minHeight: "350px" }}>
 
                     <PopUpView
