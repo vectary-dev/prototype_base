@@ -10,6 +10,13 @@ import "../../styles/index.css"
 <Meta title="Components/Containers/TexturePopup" component={TexturePopup} />
 
 # Texture Popup
+## This Popup appears on screen if the (Plus) button is clicked next to a property. See in the prototype below.
+
+This popup contains the following components: 
+-   A. Preview: The very top component that displays either the image, gradient editor or solid color picker
+-   B. Texture Type Dropdown: A dropdown where the user can choose between different texture types (Solid, Texture, Gradient)
+-   C. Tabs: These are sub options of the given Texture Type. It can happen that a Solid has completely different Tabs as Image.
+-   D. Options: The options that belong to a specific Texture Types' Tab. - Those are components by themselves as well.
 
 <Preview>
     <Story name="default">
@@ -21,3 +28,22 @@ import "../../styles/index.css"
     </Story>
 </Preview>
 
+# A & B -> Preview and Texture Type Drop-down
+## The Preview (A) is dependent on the Texture Type (B). So use the dropdown to switch between states
+The Preview changes states depending on the Texture Type. 
+If set to Texture, it displayes the image with real time preview about it's tranformations or adjustments. E.g. if you apply red overlay on a texture it is reflected in the Preview
+
+- I.    Texture Mode: An image Texture is shown with adjustments applied
+- II.   Gradient Mode: A real-time gradient editor. 
+-      II a. where always the bigger point is Selected. 
+      II b. The Selected Points Color can be readjusted via the slider controls, or the Color Input (RGB, HEX, HSB)
+      II c. A new Point can be added anywhere between any two points. 
+      II d. These control points are not visible only if the Mouse is Hovering over the Entire Popup
+      II e. The Color of the Selected point can be set by the Color Picker button as well, which on click repleaces the cursor with a color picker.
+- III.   Solid Color Picker. Allows the user to select a color.
+
+
+# C & D-> Tabs and SubOptions
+## Tabs can be used to switch between the sub options of the texture types
+
+the Tab component in case of "Texture Type = Image" has three states (Adjust, Transform and Overlay). Each of these Tab options are rendering different sub options, like Hue, Contrast etc.

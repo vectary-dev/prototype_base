@@ -8,7 +8,7 @@ import "../../styles/index.css"
 export default {
     title: 'Components/Containers/Labeled Input',
     component: LabeledInput,
-
+    description: "ads",
   argTypes: {
       input: {
             description: "Expect an object that defines the inputs. See [Generators/defaultInputs]",

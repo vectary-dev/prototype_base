@@ -9,7 +9,21 @@ import AddMaterial from "../../containers/AddMaterial"
 
 <Meta title="Components/Containers/MaterialList" component={MaterialList} />
 
-# Material List
+# Material List - 
+## This state is only shown if there is exactly one 3D Object selected!
+
+The following features are included in this container:
+
+-   Selected Material has blue title
+-   On click a material becomes selected
+-   On double click the materials name becomes editable
+-   If clicked on the minus the Material disappeares from the list
+-   On drag the Materials can be dragged around
+-   Has a maximum height of 5 Materials and has a little fade effect on either the top, bottom or both dependig on the position of the currently active element
+-   always sticks to the boundries of the list, so if the active material is below, it is on the bottom of the list, if above on the top. (try to select the e.g. 7th elment and scroll up)
+
+The Plus, Material Picker and Duplicate buttons are not implemented
+
 <Preview>
     <Story name="default">
         <TexturePropertyProvider >
@@ -21,3 +35,6 @@ import AddMaterial from "../../containers/AddMaterial"
     </Story>
 </Preview>
 
+Please note that the Plus icon is not fully functional in this prototype. 
+The expected behavior would be that on (Plus) button click, a new material is added to the list,
+that has an active state immidiately, and a randomly generated name (E.g. Brooklin)
