@@ -17,9 +17,9 @@ function Slider(props) {
 
     const maximumPosition =  171
 
-    const[drag, setDrag] = useState(false)
-    const [lastPosition, setLastPosition] = useState(0)
-    const [dragPos, setDragPos] = useState(0)
+    const [drag, setDrag] =                     useState(false)
+    const [lastPosition, setLastPosition] =     useState(0)
+    const [dragPos, setDragPos] =               useState(0)
 
     const sliderComponentRef = useRef(null)
 

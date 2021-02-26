@@ -1,3 +1,4 @@
+// tailwind.config.js
 const mainColors = {
 	primary: "#545FD9",
 	primaryLight: "#D5D8F6",

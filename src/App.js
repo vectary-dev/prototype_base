@@ -113,6 +113,7 @@ function App() {
 						*/}
 						<TextSlider propName="Roughness" active={false} unit={""} />
 
+
 						{/*
 							All props:
 							propName => The name of the property e.g. Hue or Base Color or Metalness (if not set or the field is empty -> "Property")
@@ -126,7 +127,14 @@ function App() {
 						<TextSlider propName="Emission" active={true} decimal={false} maximum={1000} unit={"%"} />
 						<TextSlider propName="Normal" active={false} decimal={false} maximum={100} unit={"%"} />
 
-						<TextSlider propName="Metalness" active={true} decimal={false} maximum={100} unit={"%"} />
+						<TextSlider 
+							propName="Emission" 
+							active={true} 
+							decimal={false} 
+							maximum={100} 
+							unit={"%"} />
+
+
 
 						<LabeledSwitch label="Double Sided Material" padding={true} />
 
